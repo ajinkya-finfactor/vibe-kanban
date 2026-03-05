@@ -61,7 +61,6 @@ interface AppBarProps {
   isSignedIn?: boolean;
   isLoadingProjects?: boolean;
   onSignIn?: () => void;
-  onMigrate?: () => void;
   userPopover?: ReactNode;
   starCount?: number | null;
   onlineCount?: number | null;
@@ -114,7 +113,6 @@ export function AppBar({
   isSignedIn,
   isLoadingProjects,
   onSignIn,
-  onMigrate,
   userPopover,
   starCount,
   onlineCount,
@@ -255,18 +253,6 @@ export function AppBar({
                   )}
                 >
                   {t('signIn')}
-                </button>
-              </PopoverClose>
-              <PopoverClose asChild>
-                <button
-                  type="button"
-                  onClick={onMigrate}
-                  className={cn(
-                    'px-base py-1 rounded-sm text-xs',
-                    'bg-secondary text-normal hover:bg-panel border border-border cursor-pointer'
-                  )}
-                >
-                  {t('appBar.kanban.migrateOldProjects')}
                 </button>
               </PopoverClose>
             </div>
