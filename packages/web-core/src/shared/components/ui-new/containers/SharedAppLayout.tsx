@@ -242,21 +242,6 @@ export function SharedAppLayout() {
     }
   }, []);
 
-  const handleMigrate = useCallback(async () => {
-    if (!isSignedIn) {
-      try {
-        const profile = await OAuthDialog.show({});
-        if (profile) {
-          appNavigation.goToMigrate();
-        }
-      } catch {
-        // Dialog cancelled
-      }
-    } else {
-      appNavigation.goToMigrate();
-    }
-  }, [isSignedIn, appNavigation]);
-
   return (
     <SyncErrorProvider>
       <div
@@ -280,7 +265,6 @@ export function SharedAppLayout() {
             isSignedIn={isSignedIn}
             isLoadingProjects={isLoading}
             onSignIn={handleSignIn}
-            onMigrate={handleMigrate}
             userPopover={
               <AppBarUserPopoverContainer
                 organizations={organizations}
@@ -381,16 +365,6 @@ export function SharedAppLayout() {
                       className="w-full px-3 py-2 rounded-md text-sm font-medium bg-brand text-on-brand hover:bg-brand-hover cursor-pointer"
                     >
                       Sign in
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        handleMigrate();
-                        setIsDrawerOpen(false);
-                      }}
-                      className="w-full px-3 py-2 rounded-md text-sm text-normal bg-secondary hover:bg-panel border border-border cursor-pointer"
-                    >
-                      Migrate old projects
                     </button>
                   </div>
                 </div>
